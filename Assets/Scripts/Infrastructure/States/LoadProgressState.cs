@@ -6,14 +6,11 @@ namespace Infrastructure.States
 {
     public class LoadProgressState : IState
     {
-        private const string PlayerName = "Default Name";
-
         private readonly GameStateMachine _stateMachine;
         private readonly IProgressService _progressService;
         private readonly ISaveLoadService _saveLoadService;
 
-        public LoadProgressState(GameStateMachine stateMachine, IProgressService progressService,
-            ISaveLoadService saveLoadService)
+        public LoadProgressState(GameStateMachine stateMachine, IProgressService progressService, ISaveLoadService saveLoadService)
         {
             _stateMachine = stateMachine;
             _progressService = progressService;
@@ -38,13 +35,7 @@ namespace Infrastructure.States
 
         private PlayerProgress NewProgress()
         {
-            PlayerProgress playerProgress = new PlayerProgress();
-
-            /*playerProgress.WorldData.PlayerData.PlayerName = PlayerName;
-
-            _progressService.Progress = playerProgress;*/
-
-            return playerProgress;
+            return new PlayerProgress();
         }
     }
 }

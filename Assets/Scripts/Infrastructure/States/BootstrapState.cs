@@ -3,6 +3,7 @@ using Infrastructure.Factory;
 using Infrastructure.Services;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.PersistentProgress.SaveLoad;
+using Infrastructure.Services.Randomizer;
 using StaticData;
 
 namespace Infrastructure.States
@@ -10,7 +11,7 @@ namespace Infrastructure.States
     public class BootstrapState : IState
     {
         private const string Initial = "Initial";
-        
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
@@ -20,7 +21,7 @@ namespace Infrastructure.States
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _services = services;
-            
+
             RegisterServices();
         }
 
@@ -36,22 +37,25 @@ namespace Infrastructure.States
 
         public void Exit()
         {
-            
         }
 
         private void RegisterServices()
         {
             RegisterStaticData();
-            
+
             _services.RegisterSingle<IAssets>(new AssetProvider());
             _services.RegisterSingle<IProgressService>(new ProgressService());
-            
+            _services.RegisterSingle<IRandomService>(new RandomService());
+
             _services.RegisterSingle<IGameFactory>(new GameFactory(
-                _services.Single<IAssets>(), 
-                _services.Single<IStaticDataService>(), 
-                _services.Single<IProgressService>()));
-            
-            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IProgressService>(), _services.Single<IGameFactory>()));
+                _services.Single<IAssets>(),
+                _services.Single<IStaticDataService>(),
+                _services.Single<IProgressService>(),
+                _services.Single<IRandomService>()));
+
+            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(
+                _services.Single<IProgressService>(), 
+                _services.Single<IGameFactory>()));
         }
 
         private void RegisterStaticData()

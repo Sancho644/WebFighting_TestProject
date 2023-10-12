@@ -1,6 +1,4 @@
-using System;
 using Data;
-using Infrastructure.Services;
 using Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
@@ -24,7 +22,6 @@ namespace UI.Screens
 
         protected virtual void Initialize()
         {
-            
         }
     }
 }

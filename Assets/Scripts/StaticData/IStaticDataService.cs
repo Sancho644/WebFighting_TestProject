@@ -1,3 +1,4 @@
+using Enemy;
 using Infrastructure.Services;
 using StaticData.Screens;
 using UI.Screens;
@@ -8,5 +9,6 @@ namespace StaticData
     {
         void LoadResources();
         ScreensConfig ForScreen(ScreenId screenId);
+        EnemyStaticData ForEnemy(EnemyId enemyId);
     }
 }

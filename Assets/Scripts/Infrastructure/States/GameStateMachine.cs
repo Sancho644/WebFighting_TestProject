@@ -18,7 +18,7 @@ namespace Infrastructure.States
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IProgressService>(), services.Single<ISaveLoadService>()),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, services.Single<IGameFactory>(), services.Single<ISaveLoadService>(), services.Single<IProgressService>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(sceneLoader, services.Single<IGameFactory>(), services.Single<ISaveLoadService>(), services.Single<IProgressService>()),
             };
         }
 

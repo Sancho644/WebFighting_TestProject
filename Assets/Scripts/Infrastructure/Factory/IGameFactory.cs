@@ -11,5 +11,7 @@ namespace Infrastructure.Factory
         void CreateUIRoot();
         void CreateLoginScreen(ISaveLoadService saveLoadService);
         List<ISavedProgress> Progresses { get; }
+        void CreateEnemyFightScreen();
+        void CreateVictoryScreen();
     }
 }

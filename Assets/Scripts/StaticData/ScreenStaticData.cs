@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StaticData
 {
-    [CreateAssetMenu(fileName = "ScreenData", menuName = "ScreenData/Screen")]
+    [CreateAssetMenu(fileName = "StaticData", menuName = "StaticData/Screen")]
     public class ScreenStaticData : ScriptableObject
     {
         public List<ScreensConfig> ScreenConfigs;

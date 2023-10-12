@@ -8,16 +8,13 @@ namespace Infrastructure.States
     {
         private const string GameScene = "GameScene";
 
-        private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IProgressService _progressService;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
-            ISaveLoadService saveLoadService, IProgressService progressService)
+        public LoadLevelState(SceneLoader sceneLoader, IGameFactory gameFactory, ISaveLoadService saveLoadService, IProgressService progressService)
         {
-            _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
             _saveLoadService = saveLoadService;

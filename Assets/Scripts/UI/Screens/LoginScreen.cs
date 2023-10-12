@@ -15,8 +15,7 @@ namespace UI.Screens
         private IGameFactory _gameFactory;
         private ISaveLoadService _saveLoadService;
 
-        public void Construct(IProgressService progressService, IGameFactory gameFactory,
-            ISaveLoadService saveLoadService)
+        public void Construct(IProgressService progressService, IGameFactory gameFactory, ISaveLoadService saveLoadService)
         {
             base.Construct(progressService);
 
@@ -50,8 +49,7 @@ namespace UI.Screens
             _gameFactory.CreateSearchingEnemyScreen();
             _saveLoadService.SaveProgress();
             
-            gameObject.SetActive(false);
-            Debug.Log("Progress Saved");
+            Destroy(gameObject);
         }
     }
 }

@@ -1,58 +1,22 @@
-using System.Collections;
-using Infrastructure.Services.PersistentProgress;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace UI.Screens
 {
-    public class EnemySearchScreen : ScreenBase
+    public class EnemySearchScreen : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _coinsText;
         [SerializeField] private TextMeshProUGUI _playerNameText;
-        [SerializeField] private GameObject _loadingScreen;
-        [SerializeField] private Button _enemySearchingButton;
-        [SerializeField] private Button _enemyFightButton;
-        [Space] 
-        [SerializeField] private string _url;
+        [SerializeField] private TextMeshProUGUI _enemyNameText;
+        [SerializeField] private RawImage _enemyIcon;
 
-        public void Construct(IProgressService progressService)
+        public void SetProgressInfo(string playerName, string coins, string enemyName, Texture2D enemyIcon)
         {
-            base.Construct(progressService);
-        }
-
-        protected override void Initialize()
-        {
-            RequestEnemyInfo();
-            RefreshPlayerNameText();
-            RefreshCoinsText();
-        }
-
-        private void RequestEnemyInfo()
-        {
-            _loadingScreen.SetActive(true);
-            StartCoroutine(SendRequest());
-        }
-
-        private void RefreshPlayerNameText()
-        {
-            _playerNameText.text = Progress.WorldData.PlayerData.PlayerName;
-        }
-
-        private void RefreshCoinsText()
-        {
-            _coinsText.text = Progress.WorldData.LootData.Collected.ToString();
-        }
-
-        private IEnumerator SendRequest()
-        {
-            UnityWebRequest request = UnityWebRequest.Get(_url);
-
-            yield return request.SendWebRequest();
-
-            _loadingScreen.SetActive(false);
-            Debug.Log(request.downloadHandler.text);
+            _playerNameText.text = playerName;
+            _coinsText.text = coins;
+            _enemyNameText.text = enemyName;
+            _enemyIcon.texture = enemyIcon;
         }
     }
 }
